@@ -80,51 +80,53 @@ export default function ProfilePage() {
   const user = profile;
 
   return (
-    <main className="mx-auto w-full max-w-md flex-1 px-6 py-12">
+    <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
       <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-10">
         <div className="pointer-events-none absolute -top-24 -right-24 h-48 w-48 rounded-full bg-purple-600/30 blur-3xl" />
 
-        <div className="relative flex flex-col items-center">
-          <div className="relative">
-            <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-purple-600 to-cyan-500 opacity-40 blur-2xl" />
-            {user?.image ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={user.image}
-                alt={user.name ?? "Avatar"}
-                className="relative h-24 w-24 rounded-full ring-2 ring-white/20"
-                referrerPolicy="no-referrer"
-              />
-            ) : (
-              <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-tr from-purple-600 to-cyan-500 text-4xl font-bold text-white">
-                {(user?.name ?? user?.email ?? "?")?.charAt(0).toUpperCase()}
-              </div>
-            )}
+        <div className="relative flex flex-col items-center gap-8 md:flex-row md:items-start">
+          <div className="flex flex-col items-center">
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-purple-600 to-cyan-500 opacity-40 blur-2xl" />
+              {user?.image ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={user.image}
+                  alt={user.name ?? "Avatar"}
+                  className="relative h-24 w-24 rounded-full ring-2 ring-white/20"
+                  referrerPolicy="no-referrer"
+                />
+              ) : (
+                <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-tr from-purple-600 to-cyan-500 text-4xl font-bold text-white">
+                  {(user?.name ?? user?.email ?? "?")?.charAt(0).toUpperCase()}
+                </div>
+              )}
+            </div>
+            <h1 className="mt-6 text-2xl font-bold">{user?.name ?? "Profile"}</h1>
+            <p className="text-sm text-white/60">{user?.email}</p>
           </div>
-          <h1 className="mt-6 text-2xl font-bold">{user?.name ?? "Profile"}</h1>
-          <p className="text-sm text-white/60">{user?.email}</p>
-        </div>
 
-        <div className="relative mt-8 flex flex-col gap-4 border-t border-white/10 pt-8">
-          <Row label="Name" value={user?.name} />
-          <Row label="Email" value={user?.email} />
-          <Row label="User ID" value={user?.id} />
-          <Row
-            label="Email verified"
-            value={
-              user?.emailVerified
-                ? new Date(user.emailVerified).toLocaleDateString()
-                : "No"
-            }
-          />
-          <Row
-            label="Joined"
-            value={user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : null}
-          />
-          <Row
-            label="Last updated"
-            value={user?.updatedAt ? new Date(user.updatedAt).toLocaleDateString() : null}
-          />
+          <div className="relative flex w-full flex-col gap-4 border-t border-white/10 pt-8 md:border-l md:border-t-0 md:pl-10 md:pt-0">
+            <Row label="Name" value={user?.name} />
+            <Row label="Email" value={user?.email} />
+            <Row label="User ID" value={user?.id} />
+            <Row
+              label="Email verified"
+              value={
+                user?.emailVerified
+                  ? new Date(user.emailVerified).toLocaleDateString()
+                  : "No"
+              }
+            />
+            <Row
+              label="Joined"
+              value={user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : null}
+            />
+            <Row
+              label="Last updated"
+              value={user?.updatedAt ? new Date(user.updatedAt).toLocaleDateString() : null}
+            />
+          </div>
         </div>
       </div>
     </main>
