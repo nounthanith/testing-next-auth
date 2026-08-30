@@ -3,6 +3,11 @@ import { connectToDatabase } from "@/lib/mongoose";
 
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+  title: "Users",
+  description: "Browse all registered users of the NextAuth demo application.",
+};
+
 export default async function UsersPage() {
   await connectToDatabase();
   const users = await User.find().sort({ createdAt: -1 }).lean();

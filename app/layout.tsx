@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Providers from "@/components/Providers";
 import Navbar from "@/components/Navbar";
+import { defaultMetadata, defaultViewport, SITE_DESCRIPTION } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,14 +16,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next-Auth",
-  description: "Nuon Thanith testing next auth",
-  openGraph: {
-    title: "Next-Auth",
-    description: "Testing NextAuth implementation",
-    url: "https://new-portfolio-blue-mu.vercel.app",
-  },
+  ...defaultMetadata,
+  description: SITE_DESCRIPTION,
+  applicationName: "NextAuth",
 };
+
+export const viewport = defaultViewport;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
