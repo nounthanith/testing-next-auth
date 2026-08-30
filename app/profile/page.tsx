@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 interface ProfileUser {
   id: string;
@@ -28,6 +28,7 @@ export default function ProfilePage() {
   const [profile, setProfile] = useState<ProfileUser | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [signingOut, setSigningOut] = useState(false);
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -127,6 +128,27 @@ export default function ProfilePage() {
               value={user?.updatedAt ? new Date(user.updatedAt).toLocaleDateString() : null}
             />
           </div>
+        </div>
+
+        <div className="relative mt-8 flex justify-end border-t border-white/10 pt-6">
+          <button
+            type="button"
+            onClick={() => {
+              setSigningOut(true);
+              signOut();
+            }}
+            disabled={signingOut}
+            className="inline-flex items-center gap-2 rounded-xl border border-red-500/30 bg-red-500/10 px-5 py-2.5 text-sm font-medium text-red-300 transition hover:bg-red-500/20 disabled:opacity-60"
+          >
+            {signingOut ? (
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-red-300/30 border-t-red-300" />
+            ) : (
+              <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
+                <path d="M16 13v-2H7V8l-5 4 5 4v-3h9zm-4.5-9.5L9.2 6.8A5 5 0 0 0 5 11v2h2v-2a3 3 0 0 1 2.5-2.5l2.3 2.3 2.3-2.3A3 3 0 0 1 16 11v2h2v-2a5 5 0 0 0-4.2-4.5l-2.3-2.5z" />
+              </svg>
+            )}
+            {signingOut ? "Signing out..." : "Sign out"}
+          </button>
         </div>
       </div>
     </main>

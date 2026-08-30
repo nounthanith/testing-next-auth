@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const links = [
   { href: "/", label: "Home" },
@@ -65,6 +65,16 @@ export default function Navbar() {
           Sign in
         </Link>
       )}
+
+      {session?.user && (
+        <button
+          type="button"
+          onClick={() => signOut()}
+          className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-left text-sm font-medium text-red-300 transition hover:bg-red-500/20 md:hidden"
+        >
+          Sign out
+        </button>
+      )}
     </>
   );
 
@@ -84,24 +94,33 @@ export default function Navbar() {
         {/* Desktop: avatar / sign-in on the right */}
         <div className="hidden items-center gap-3 md:flex">
           {session?.user ? (
-            <div className="flex items-center gap-2">
-              {session.user.image ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={session.user.image}
-                  alt={session.user.name ?? "Avatar"}
-                  className="h-8 w-8 rounded-full ring-2 ring-white/20"
-                  referrerPolicy="no-referrer"
-                />
-              ) : (
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-sm font-semibold text-white">
-                  {session.user.name?.charAt(0)?.toUpperCase() ?? "?"}
-                </div>
-              )}
-              <span className="hidden text-sm font-medium text-white/80 sm:block">
-                {session.user.name}
-              </span>
-            </div>
+            <>
+              <div className="flex items-center gap-2">
+                {session.user.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={session.user.image}
+                    alt={session.user.name ?? "Avatar"}
+                    className="h-8 w-8 rounded-full ring-2 ring-white/20"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-sm font-semibold text-white">
+                    {session.user.name?.charAt(0)?.toUpperCase() ?? "?"}
+                  </div>
+                )}
+                <span className="hidden text-sm font-medium text-white/80 sm:block">
+                  {session.user.name}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => signOut()}
+                className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm font-medium text-red-300 transition hover:bg-red-500/20"
+              >
+                Sign out
+              </button>
+            </>
           ) : (
             <Link
               href="/login"
