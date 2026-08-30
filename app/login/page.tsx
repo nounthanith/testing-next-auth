@@ -32,7 +32,7 @@ export default function LoginPage() {
 
       <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-10">
         <div className="mb-8 text-center">
-          <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-purple-600 to-cyan-500 shadow-lg shadow-purple-500/30">
+          <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-tr from-purple-600 to-cyan-500 shadow-lg shadow-purple-500/30">
             <LockBadge className="h-7 w-7 text-white" />
           </div>
           <h1 className="text-2xl font-bold">Welcome back</h1>

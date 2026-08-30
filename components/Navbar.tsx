@@ -60,7 +60,7 @@ export default function Navbar() {
         <Link
           href="/login"
           onClick={onClick}
-          className="rounded-lg bg-gradient-to-tr from-purple-600 to-cyan-500 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-purple-500/30 transition hover:opacity-90 md:hidden"
+          className="rounded-lg bg-linear-to-tr from-purple-600 to-cyan-500 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-purple-500/30 transition hover:opacity-90 md:hidden"
         >
           Sign in
         </Link>
@@ -82,7 +82,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/30 backdrop-blur-xl">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-purple-600 to-cyan-500 text-sm text-white">
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-tr from-purple-600 to-cyan-500 text-sm text-white">
             A
           </span>
           NextAuth
@@ -124,7 +124,7 @@ export default function Navbar() {
           ) : (
             <Link
               href="/login"
-              className="rounded-lg bg-gradient-to-tr from-purple-600 to-cyan-500 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-purple-500/30 transition hover:opacity-90"
+              className="rounded-lg bg-linear-to-tr from-purple-600 to-cyan-500 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-purple-500/30 transition hover:opacity-90"
             >
               Sign in
             </Link>
