@@ -15,7 +15,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Next-Auth",
-  description: "Nuon Thanith testing next auth: https://new-portfolio-blue-mu.vercel.app",
+  description: "Nuon Thanith testing next auth",
+  openGraph: {
+    title: "Next-Auth",
+    description: "Testing NextAuth implementation",
+    url: "https://new-portfolio-blue-mu.vercel.app",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
